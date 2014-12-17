@@ -1,24 +1,30 @@
+This container when built shall contain : 
+-drools-wb 6.2 CR3 
+-postgres
+
+sudo docker build -t="image-wb" .
+and to run it : 
+sudo docker run -d --name nhs1 -p 19418:9418 -p 19080:8080 -p 19022:22 -p 15432:5432 image-wb
+
+then open a browser and go to http://localhost:19080/kie-wb and user admin with password admin
 
 
 
-To create image:
+There is an ssh server
+ssh -p 19022 root@localhost
+password is root
+the logs for the tomcat server are located under /var/log/supervisor/tomcat.log
+
+The git repository is at port 19418.
+On the machine, the repository /home/
 
 
-#to create image
-sudo docker build -t="imagename" .
-
-#to run container as a service
-sudo docker run -d --name container-name -h="hostname" -p 8080 -p 22 -p 5432 image1 (or -p 49155:8080 to avoid random port)
-
-
-#to verify if container is running:
-sudo docker  ps 
-
-#to get all the information about container:
-sudo docker inspect <containar-name>
-
-#to copy files to the host-machine 
-sudo docker cp container-name:/source  destination
+This docker container is built on the docker hub.
+If you want to download the built image : 
+sudo docker pull chtijbug/drools-kie-wb
+and then 
+sudo docker run -d --name nhs1 -p 19080:8080 -p 19022:22 -p 15432:5432  chtijbug/drools-kie-wb
+and all the rest is the same.
 
 
 
