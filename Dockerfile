@@ -14,7 +14,6 @@ RUN apt-get install -y wget openssh-server supervisor openjdk-7-jdk postgresql-9
 
 
 #setup tomcat7
-ADD myconfig /home/guvnor/myconfig
 ENV CATALINA_HOME /home/tomcat7/apache-tomcat-7.0
 ENV CATALINA_BASE /home/tomcat7/apache-tomcat-7.0
 ENV CATALINA_PID /var/run/tomcat7.pid
