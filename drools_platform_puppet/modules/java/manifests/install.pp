@@ -14,7 +14,7 @@ class java::install {
     ensure => "directory",
     owner  => "root",
     group  => "root",
-    mode   => 750
+    mode   => 750 
   }
 
   exec { "mkdir":

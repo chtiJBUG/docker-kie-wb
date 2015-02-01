@@ -26,7 +26,7 @@ class tomcat7::install {
   lib::wget { "kie-samples.zip":
     destination => '/home/kie-samples',
     user        => 'root',
-    src         => 'http://search.maven.org/remotecontent?filepath=org/kie/kie-wb-example-repositories/6.2.0.CR3/kie-wb-example-repositories-6.2.0.CR3.zip',
+    src         => 'http://search.maven.org/remotecontent?filepath=org/kie/kie-wb-example-repositories/6.2.0.CR4/kie-wb-example-repositories-6.2.0.CR4.zip',
     require     => [exec["unzip tomcat"],file["/home/kie-samples"]],
   }
 
@@ -48,7 +48,7 @@ class tomcat7::install {
   lib::wget { "apache-maven-3.1.1-bin.tar.gz":
     destination => '/home/maven',
     user        => 'tomcat7',
-    src         => "ftp://mirror.reverse.net/pub/apache/maven/maven-3/3.1.1/binaries/apache-maven-3.1.1-bin.tar.gz",
+    src         => "http://mirrors.ircam.fr/pub/apache/maven/maven-3/3.1.1/binaries/apache-maven-3.1.1-bin.tar.gz",
     require     => [Package['openjdk-7-jdk'], user["tomcat7"]],
   }
 
@@ -212,23 +212,24 @@ class tomcat7::install {
   lib::wget { "kie-wb.war":
     destination => '/home/tomcat7/apache-tomcat-7.0/webapps/',
     user        => 'tomcat7',
-    src         => maven_to_link("org.chtijbug.drools:drools-platform-kie:6.2.0-SNAPSHOT:war"),
+    src         => maven_to_link("org.chtijbug.drools:drools-framework-kie-wb-wars:2.0.0-SNAPSHOT:war"),
     require     => [
       exec["unzip tomcat"],
       lib::wget["loginModule.jar"],
       file["/home/tomcat7/apache-tomcat-7.0/bin/setenv.sh"],
       file["/home/guvnor"]]
   }
- 
-  # download drools-platform-login.jar :
+  
+  # download drools-platform-login.jar : 
   lib::wget { "loginModule.jar":
     destination => '/home/tomcat7/apache-tomcat-7.0/lib/',
     user        => 'root',
-    src         => maven_to_link("org.chtijbug.drools:drools-platform-login:1.0.0-SNAPSHOT:jar"),
+    src         => maven_to_link("org.chtijbug.drools:drools-framework-login:2.0.0-SNAPSHOT:jar"),
     require     => [
       exec["unzip tomcat"],
       lib::wget["commons-dbutils.jar"],
       lib::wget["9.3-1101-jdbc4.jar"],
+      
       file["/home/tomcat7/apache-tomcat-7.0/bin/setenv.sh"]],
   }
 
@@ -268,7 +269,7 @@ class tomcat7::install {
   lib::wget { "slf4j-api.jar":
     destination => '/home/tomcat7/apache-tomcat-7.0/lib/',
     user        => 'root',
-    src         => 'http://search.maven.org/remotecontent?filepath=org/slf4j/slf4j-api/1.7.7/slf4j-api-1.7.7.jar',
+    src         => 'http://search.maven.org/remotecontent?filepath=org/slf4j/slf4j-api/1.7.10/slf4j-api-1.7.10.jar',
     require     => [exec["unzip tomcat"]],
   }
 
@@ -276,7 +277,7 @@ class tomcat7::install {
   lib::wget { "slf4j-jdk14-1.7.7.jar":
     destination => '/home/tomcat7/apache-tomcat-7.0/lib/',
     user        => 'root',
-    src         => 'http://search.maven.org/remotecontent?filepath=org/ow2/util/bundles/slf4j-jdk14-1.7.7/1.0.0/slf4j-jdk14-1.7.7-1.0.0.jar',
+    src         => 'http://central.maven.org/maven2/org/slf4j/slf4j-jdk14/1.7.10/slf4j-jdk14-1.7.10.jar',
     require     => [exec["unzip tomcat"]],
   }
 
@@ -308,7 +309,8 @@ class tomcat7::install {
   lib::wget { "kie-tomcat-integration.jar":
     destination => '/home/tomcat7/apache-tomcat-7.0/lib/',
     user        => 'root',
-    src         => 'http://search.maven.org/remotecontent?filepath=org/kie/kie-tomcat-integration/6.2.0.CR3/kie-tomcat-integration-6.2.0.CR3.jar',
+   src         => 'http://search.maven.org/remotecontent?filepath=org/kie/kie-tomcat-integration/6.2.0.CR4/kie-tomcat-integration-6.2.0.CR4.jar',
+    # src         => maven_to_link("org.kie:kie-tomcat-integration:6.2.0.CR4:jar"),
     require     => [exec["unzip tomcat"]],
   }
   

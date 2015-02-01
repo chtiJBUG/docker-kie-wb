@@ -35,10 +35,83 @@ ALTER TABLE guvnorusers_groups
   OWNER TO  <%= @security_user %>;
 
 
-INSERT INTO guvnorusers values (1,'admin','admin');
-INSERT INTO guvnorusers values (3,'swimmingpool','swimmingpool');
-INSERT INTO guvnorusers values (2,'loyalty','loyalty');
+-- group creation ----
 INSERT INTO guvnorgroups values (1,'admin');
+INSERT INTO guvnorgroups values (2,'analyst');
+INSERT INTO guvnorgroups values (3,'developer');
+INSERT INTO guvnorgroups values (4,'manager');
+INSERT INTO guvnorgroups values (5,'user');
+
+INSERT INTO guvnorgroups values (6,'users');
+INSERT INTO guvnorgroups values (7,'director');
+INSERT INTO guvnorgroups values (8,'kiemgmt');
+INSERT INTO guvnorgroups values (9,'IT');
+INSERT INTO guvnorgroups values (10,'HR');
+INSERT INTO guvnorgroups values (11,'Accounting');
+INSERT INTO guvnorgroups values (12,'Translator');
+INSERT INTO guvnorgroups values (13,'Reviewer');
+-- User creation
+
+INSERT INTO guvnorusers values (1,'admin','admin');
+INSERT INTO guvnorusers values (2,'loyalty','loyalty');
+INSERT INTO guvnorusers values (3,'swimmingpool','swimmingpool');
+INSERT INTO guvnorusers values (4,'director','director');
+INSERT INTO guvnorusers values (5,'user','user');
+INSERT INTO guvnorusers values (6,'guest','guest');
+INSERT INTO guvnorusers values (7,'salaboy','salaboy');
+INSERT INTO guvnorusers values (8,'maciej','maciej');
+INSERT INTO guvnorusers values (9,'kris','kris');
+INSERT INTO guvnorusers values (10,'katy','katy');
+INSERT INTO guvnorusers values (11,'john','john');
+
+INSERT INTO guvnorusers values (12,'jack','jack');
+
+
+
+-- link user /group
 INSERT INTO guvnorusers_groups values (1,1)  ;
+INSERT INTO guvnorusers_groups values (1,6)  ;
+INSERT INTO guvnorusers_groups values (1,7)  ;
+INSERT INTO guvnorusers_groups values (1,4)  ;
+INSERT INTO guvnorusers_groups values (1,8)  ;
+
 INSERT INTO guvnorusers_groups values (2,1) ;
 INSERT INTO guvnorusers_groups values (3,1);
+
+INSERT INTO guvnorusers_groups values (4,6)  ;
+INSERT INTO guvnorusers_groups values (4,7)  ;
+INSERT INTO guvnorusers_groups values (4,4)  ;
+
+INSERT INTO guvnorusers_groups values (5,6)  ;
+
+INSERT INTO guvnorusers_groups values (7,5)  ;
+INSERT INTO guvnorusers_groups values (7,1)  ;
+INSERT INTO guvnorusers_groups values (7,9)  ;
+INSERT INTO guvnorusers_groups values (7,10)  ;
+INSERT INTO guvnorusers_groups values (7,11)  ;
+INSERT INTO guvnorusers_groups values (7,8)  ;
+
+INSERT INTO guvnorusers_groups values (8,5)  ;
+INSERT INTO guvnorusers_groups values (8,1)  ;
+INSERT INTO guvnorusers_groups values (8,12)  ;
+INSERT INTO guvnorusers_groups values (8,8)  ;
+
+INSERT INTO guvnorusers_groups values (9,5)  ;
+INSERT INTO guvnorusers_groups values (9,1)  ;
+INSERT INTO guvnorusers_groups values (9,13)  ;
+
+
+INSERT INTO guvnorusers_groups values (10,5)  ;
+INSERT INTO guvnorusers_groups values (10,10)  ;
+
+INSERT INTO guvnorusers_groups values (11,5)  ;
+INSERT INTO guvnorusers_groups values (11,11)  ;
+
+INSERT INTO guvnorusers_groups values (12,5)  ;
+INSERT INTO guvnorusers_groups values (12,9)  ;
+
+
+
+
+
+

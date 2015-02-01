@@ -45,6 +45,8 @@ EXPOSE 8080
 
 # Expose the PostgreSQL and SSH port
 EXPOSE 22
+# for remote debugging of tomcat7 applications.
+EXPOSE 5005
 EXPOSE 5432
 EXPOSE 61616
 EXPOSE 9418
