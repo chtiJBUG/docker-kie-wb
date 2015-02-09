@@ -28,7 +28,7 @@ node default {
     ip_mask_allow_all_users    => '0.0.0.0/0',
     listen_addresses           => '*',
     postgres_password          => 'postgres',
-  }
+  } 
 
   postgresql::server::tablespace { 'security': location => '/var/lib/postgresql/9.3/security' }
 

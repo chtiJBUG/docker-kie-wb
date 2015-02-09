@@ -12,7 +12,7 @@ ENV INITRD No
 #install
 RUN apt-get install -y wget openssh-server supervisor openjdk-7-jdk postgresql-9.3 unzip
 
-
+ 
 #setup tomcat7
 ENV CATALINA_HOME /home/tomcat7/apache-tomcat-7.0
 ENV CATALINA_BASE /home/tomcat7/apache-tomcat-7.0

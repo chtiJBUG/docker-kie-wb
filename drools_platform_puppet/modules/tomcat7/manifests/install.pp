@@ -31,7 +31,7 @@ class tomcat7::install {
   }
 
    exec { "unzip kie-samples":
-    command => "unzip /home/kie-samples/kie-samples.zip",
+    command => "unzip /home/kie-samples/kie-samples.zip -d /home/kie-samples",
     path    => "/usr/local/bin/:/bin/:/usr/sbin/:/usr/bin",
     require => [lib::wget["kie-samples.zip"]],
   }
@@ -215,6 +215,7 @@ class tomcat7::install {
     src         => maven_to_link("org.chtijbug.drools:drools-framework-kie-wb-wars:2.0.0-SNAPSHOT:war"),
     require     => [
       exec["unzip tomcat"],
+      exec["unzip kie-samples"],
       lib::wget["loginModule.jar"],
       file["/home/tomcat7/apache-tomcat-7.0/bin/setenv.sh"],
       file["/home/guvnor"]]
