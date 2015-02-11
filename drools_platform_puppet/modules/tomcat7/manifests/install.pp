@@ -21,13 +21,18 @@ class tomcat7::install {
     mode    => '0664',
     require => [exec["unzip tomcat"]],
   }  
-
+  # unzip chtijbug examples
+ exec { "unzip chtijbug-samples":
+    command => "unzip /home/examples/chtijbug.zip -d /home/kie-samples",
+    path    => "/usr/local/bin/:/bin/:/usr/sbin/:/usr/bin",
+     require     => [exec["unzip tomcat"],file["/home/kie-samples"]],
+  }
   # kie-tomcat-integration.jar :
   lib::wget { "kie-samples.zip":
     destination => '/home/kie-samples',
     user        => 'root',
     src         => 'http://search.maven.org/remotecontent?filepath=org/kie/kie-wb-example-repositories/6.2.0.CR4/kie-wb-example-repositories-6.2.0.CR4.zip',
-    require     => [exec["unzip tomcat"],file["/home/kie-samples"]],
+    require     => [exec["unzip chtijbug-samples"],exec["unzip tomcat"],file["/home/kie-samples"]],
   }
 
    exec { "unzip kie-samples":
