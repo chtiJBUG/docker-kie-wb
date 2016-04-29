@@ -243,7 +243,7 @@ class tomcat7::install {
   lib::wget { "9.3-1101-jdbc4.jar":
     destination => '/home/tomcat7/apache-tomcat-7.0/lib/',
     user        => 'root',
-    src         => 'https://oss.sonatype.org/content/repositories/releases/org/postgresql/postgresql/9.3-1101-jdbc4/postgresql-9.3-1101-jdbc4.jar',
+    src         => 'https://oss.sonatype.org/content/repositories/releases/org/postgresql/postgresql/9.4.1208/postgresql-9.4.1208.jar',
     require     => [exec["unzip tomcat"]],
   }
 
@@ -272,18 +272,18 @@ class tomcat7::install {
   }
 
   # download slf4j-api.jar :
-  lib::wget { "slf4j-api.jar":
+  lib::wget { "slf4j-api-1.7.21.jar":
     destination => '/home/tomcat7/apache-tomcat-7.0/lib/',
     user        => 'root',
-    src         => 'http://search.maven.org/remotecontent?filepath=org/slf4j/slf4j-api/1.7.10/slf4j-api-1.7.10.jar',
+    src         => 'http://search.maven.org/remotecontent?filepath=org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar',
     require     => [exec["unzip tomcat"]],
   }
 
   # download slf4j-jdk14-1.7.2.jar :
-  lib::wget { "slf4j-jdk14-1.7.7.jar":
+  lib::wget { "slf4j-jdk14-1.7.21.jar":
     destination => '/home/tomcat7/apache-tomcat-7.0/lib/',
     user        => 'root',
-    src         => 'http://central.maven.org/maven2/org/slf4j/slf4j-jdk14/1.7.10/slf4j-jdk14-1.7.10.jar',
+    src         => 'http://central.maven.org/maven2/org/slf4j/slf4j-jdk14/1.7.21/slf4j-jdk14-1.7.21.jar',
     require     => [exec["unzip tomcat"]],
   }
 
@@ -315,7 +315,7 @@ class tomcat7::install {
   lib::wget { "kie-tomcat-integration.jar":
     destination => '/home/tomcat7/apache-tomcat-7.0/lib/',
     user        => 'root',
-   src         => 'http://search.maven.org/remotecontent?filepath=org/kie/kie-tomcat-integration/6.2.0.CR4/kie-tomcat-integration-6.2.0.CR4.jar',
+   src         => 'http://search.maven.org/remotecontent?filepath=org/kie/kie-tomcat-integration/6.4.0.Final/kie-tomcat-integration-6.4.0.Final.jar',
     # src         => maven_to_link("org.kie:kie-tomcat-integration:6.2.0.CR4:jar"),
     require     => [exec["unzip tomcat"]],
   }

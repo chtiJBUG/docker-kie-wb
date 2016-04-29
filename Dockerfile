@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:14.04.4
 MAINTAINER Nicolas Heron
 
 ENV REFRESHED_AT 2014-07-24
@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV INITRD No
 
 #install
-RUN apt-get install -y wget openssh-server supervisor openjdk-7-jdk postgresql-9.3 unzip
+RUN apt-get install -y   wget openssh-server supervisor openjdk-7-jdk postgresql-9.3 unzip
 
 ADD examples /home/examples  
 #setup tomcat7
