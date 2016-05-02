@@ -243,7 +243,7 @@ class tomcat7::install {
   lib::wget { "9.3-1101-jdbc4.jar":
     destination => '/home/tomcat7/apache-tomcat-7.0/lib/',
     user        => 'root',
-    src         => 'https://oss.sonatype.org/content/repositories/releases/org/postgresql/postgresql/9.4.1208/postgresql-9.4.1208.jar',
+    src         => 'https://oss.sonatype.org/content/repositories/releases/org/postgresql/postgresql/9.4.1208.jre7/postgresql-9.4.1208.jre7.jar',
     require     => [exec["unzip tomcat"]],
   }
 
