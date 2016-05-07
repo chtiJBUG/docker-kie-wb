@@ -13,9 +13,23 @@ class tomcat7::install {
     owner   => 'tomcat7',
     mode    => '0664',
     require => [exec["unzip tomcat"]],
-  }  
+  }
   # creates directory kie-samples
   file { "/home/kie-samples":
+    ensure  => directory,
+    owner   => 'tomcat7',
+    mode    => '0664',
+    require => [exec["unzip tomcat"]],
+  }
+  # creates directory lucene
+  file { "/home/lucene":
+    ensure  => directory,
+    owner   => 'tomcat7',
+    mode    => '0664',
+    require => [exec["unzip tomcat"]],
+  }
+  # creates directory M2_HOMEs
+  file { "/home/M2_HOME":
     ensure  => directory,
     owner   => 'tomcat7',
     mode    => '0664',
