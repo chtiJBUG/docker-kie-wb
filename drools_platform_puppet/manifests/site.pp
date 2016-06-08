@@ -38,13 +38,21 @@ node default {
 
   postgresql::server::tablespace { 'platform': location => '/var/lib/postgresql/9.3/platform' }
 
+  postgresql::server::tablespace { 'kieserver': location => '/var/lib/postgresql/9.3/kieserver' }
+
+
+  postgresql::server::db { 'kieserver':
+    user       => 'kieserver',
+    password   => 'kieserver',
+    tablespace => "kieserver",
+    owner      => 'platform'
+  }
   postgresql::server::db { 'platform':
     user       => 'platform',
     password   => 'platform',
     tablespace => "platform",
     owner      => 'platform'
   }
-
   postgresql::server::db { 'security':
     user       => 'security',
     password   => 'security',

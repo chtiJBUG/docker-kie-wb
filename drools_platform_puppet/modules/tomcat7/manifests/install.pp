@@ -253,6 +253,14 @@ class tomcat7::install {
       file["/home/tomcat7/apache-tomcat-7.0/bin/setenv.sh"]],
   }
 
+
+  # download mysql-jdbc.jar :
+  lib::wget { "mysql-connector-java-5.1.39.jar":
+    destination => '/home/tomcat7/apache-tomcat-7.0/lib/',
+    user        => 'root',
+    src         => 'http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar',
+    require     => [exec["unzip tomcat"]],
+  }
   # download pgsql-jdbc.jar :
   lib::wget { "9.3-1101-jdbc4.jar":
     destination => '/home/tomcat7/apache-tomcat-7.0/lib/',

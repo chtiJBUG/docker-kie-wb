@@ -9,7 +9,8 @@
   <role rolename="analyst"/>
 
   <user username="tomcat" password="tomcat" roles="manager-gui,admin-gui"/>
-  
-  <user username="pymma" password="abcde" roles="admin,manager-gui,admin-gui"/>
 
+  <user username="pymma" password="abcde" roles="admin,manager-gui,admin-gui,kie-server"/>
+  <user username="kieserver" password="kieserver1!" roles="kie-server"/>
+  <user username="workbench" password="workbench1!" roles="admin,kie-server"/>
 </tomcat-users>
