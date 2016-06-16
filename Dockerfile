@@ -1,32 +1,28 @@
-FROM ubuntu:14.04.4
+FROM ubuntu:16.04
 MAINTAINER Nicolas Heron
 
-ENV REFRESHED_AT 2014-07-24
+ENV REFRESHED_AT 2016-06-14
+RUN echo 'deb http://us.archive.ubuntu.com/ubuntu xenial main universe' >> /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get -y upgrade
+RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' >> /etc/apt/sources.list.d/pgdg.list
+RUN apt-get install -y wget sudo
+RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
 RUN apt-get update
 RUN apt-get -y upgrade
 
 # avoid debconf and initrd
 ENV DEBIAN_FRONTEND noninteractive
 ENV INITRD No
-
 #install
-RUN apt-get install -y   wget openssh-server supervisor openjdk-7-jdk postgresql-9.3 unzip
+RUN apt-get install -y wget openssh-server supervisor openjdk-8-jdk postgresql postgresql-contrib unzip puppet vim
 
 ADD examples /home/examples  
 #setup tomcat7
-ENV CATALINA_HOME /home/tomcat7/apache-tomcat-7.0
-ENV CATALINA_BASE /home/tomcat7/apache-tomcat-7.0
-ENV CATALINA_PID /var/run/tomcat7.pid
-ENV CATALINA_SH /home/tomcat7/apache-tomcat-7.0/bin/catalina.sh
-ENV CATALINA_TMPDIR /tmp/tomcat7-tomcat7-tmpRUN
-ENV M2_HOME /home/maven/apache-maven-3.1.1
-RUN mkdir -p $CATALINA_TMPDIR
 
+ENV M2_HOME /home/maven/apache-maven-3.3.9
 
-# to install puppet
-RUN wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
-RUN dpkg -i puppetlabs-release-trusty.deb
-RUN apt-get update && apt-get install -y puppet
 
 # to copy Puppet code into container
 ADD drools_platform_puppet /drools_platform_puppet 

@@ -1,6 +1,6 @@
-case $operatingsystem { # Install only on Ubuntu 14.04 &
+case $operatingsystem { # Install only on Ubuntu 16.04 &
   'ubuntu' : {
-    if (!($operatingsystemrelease == '14.04')) {
+    if (!($operatingsystemrelease == '16.04')) {
       fail('Unsupported operating system')
     }
   }
@@ -22,7 +22,10 @@ node default {
 
   # include classes from modules
 
-
+  class { 'postgresql::globals':
+    manage_package_repo => true,
+    version             => '9.5',
+  } ->
   class { 'postgresql::server':
     ip_mask_deny_postgres_user => '0.0.0.0/32',
     ip_mask_allow_all_users    => '0.0.0.0/0',
@@ -30,15 +33,15 @@ node default {
     postgres_password          => 'postgres',
   } 
 
-  postgresql::server::tablespace { 'security': location => '/var/lib/postgresql/9.3/security' }
+  postgresql::server::tablespace { 'security': location => '/var/lib/postgresql/9.5/security' }
 
-  postgresql::server::tablespace { 'jbpm': location => '/var/lib/postgresql/9.3/jbpm' }
+  postgresql::server::tablespace { 'jbpm': location => '/var/lib/postgresql/9.5/jbpm' }
 
-  postgresql::server::tablespace { 'loyaltyweb': location => '/var/lib/postgresql/9.3/loyaltyweb' }
+  postgresql::server::tablespace { 'loyaltyweb': location => '/var/lib/postgresql/9.5/loyaltyweb' }
 
-  postgresql::server::tablespace { 'platform': location => '/var/lib/postgresql/9.3/platform' }
+  postgresql::server::tablespace { 'platform': location => '/var/lib/postgresql/9.5/platform' }
 
-  postgresql::server::tablespace { 'kieserver': location => '/var/lib/postgresql/9.3/kieserver' }
+  postgresql::server::tablespace { 'kieserver': location => '/var/lib/postgresql/9.5/kieserver' }
 
 
   postgresql::server::db { 'kieserver':
@@ -82,11 +85,11 @@ node default {
     stage => javaapp,
   }
 
-  class { 'tomcat7::install':
+  class { 'wildfly82::install':
     stage => javaapp,
   }
   include 'pgsqldpf::install' # include in the installation code of this node the module postgres::install
   include 'java::install' # include in the installation code of this node the module java::install
 
-  include 'tomcat7::install' # include in the installation code of this node the module tomcat::install
+  include 'wildfly82::install' # include in the installation code of this node the module tomcat::install
 }
