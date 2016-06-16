@@ -2,9 +2,9 @@ This container when built shall contain :
 -drools-wb 2.0.0 chtjbug 
 -postgres
 
-sudo docker build -t="image-wb" .
+sudo docker build -t="image-kie-wb" .
 and to run it : 
-sudo docker run -d --name nhs2 -p 19418:9418 -p 19505:5005 -p 19080:8080 -p 19022:22 -p 15432:5432 -p 61616:61616 image-wb
+sudo docker run -d --name nhs2 -p 19418:9418 -p 19505:5005 -p 19080:8080 -p 19022:22 -p 15432:5432 -p 61616:61616 image-kie-wb
 
 then open a browser and go to http://localhost:19080/kie-wb and user admin with password admin
 

@@ -41,24 +41,24 @@ class wildfly82::install {
     require => [exec["unzip wildfly"]],
   }
   # unzip chtijbug examples
-  exec { "unzip chtijbug-samples":
-    command     => "unzip /home/examples/samples.zip -d /home/kie-samples",
-    path        => "/usr/local/bin/:/bin/:/usr/sbin/:/usr/bin",
-    require     => [exec["unzip wildfly"],file["/home/kie-samples"]],
-  }
+  #exec { "unzip chtijbug-samples":
+  #  command     => "unzip /home/examples/chtijbug.zip -d /home/kie-samples",
+  #  path        => "/usr/local/bin/:/bin/:/usr/sbin/:/usr/bin",
+  #  require     => [exec["unzip wildfly"],file["/home/kie-samples"]],
+  #}
 
-  lib::wget { "kie-samples.zip":
-    destination => '/home/kie-samples',
-    user        => 'root',
-    src         => 'http://search.maven.org/remotecontent?filepath=org/kie/kie-wb-example-repositories/6.4.0.Final/kie-wb-example-repositories-6.4.0.Final.zip',
-    require     => [exec["unzip chtijbug-samples"],exec["unzip wildfly"],file["/home/kie-samples"]],
-  }
+  # lib::wget { "kie-samples.zip":
+  #   destination => '/home/kie-samples',
+  #   user        => 'root',
+  #   src         => 'http://search.maven.org/remotecontent?filepath=org/kie/kie-wb-example-repositories/6.4.0.Final/kie-wb-example-repositories-6.4.0.Final.zip',
+  #   require     => [exec["unzip wildfly"],file["/home/kie-samples"]],
+  # }
 
-  exec { "unzip kie-samples":
-    command => "unzip /home/kie-samples/kie-samples.zip -d /home/kie-samples",
-    path    => "/usr/local/bin/:/bin/:/usr/sbin/:/usr/bin",
-    require => [lib::wget["kie-samples.zip"]],
-  }
+  # exec { "unzip kie-samples":
+  #   command => "unzip /home/kie-samples/kie-samples.zip -d /home/kie-samples",
+  #   path    => "/usr/local/bin/:/bin/:/usr/sbin/:/usr/bin",
+  #   require => [lib::wget["kie-samples.zip"]],
+  # }
 
 
   # creates directory /home/guvnor
@@ -83,13 +83,13 @@ class wildfly82::install {
     mode    => '0664',
     require => [exec["unzip wildfly"],file["/root/.m2"]],
   }
-  file { "/root/.m2/repository/settings.xml":
+  file { "/root/.m2/settings.xml":
     ensure  => present,
     replace => true,
     source  => 'puppet:///modules/wildfly82/settings.xml',
     owner   => wildfly82,
     mode    => 664,
-    require =>[exec["unzip wildfly"],file["/root/.m2/repository"]],
+    require =>[exec["unzip wildfly"],file["/root/.m2"]],
   }
 
   # creates directory /root/.m2/repository/org
@@ -136,7 +136,7 @@ class wildfly82::install {
     destination => '/home/maven',
     user        => 'wildfly82',
     src         => "http://mirrors.ircam.fr/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz",
-    require     => [Package['openjdk-8-jdk'], user["wildfly82"]],
+    require     => [ user["wildfly82"]],
   }
 
   exec { "unzip maven":
@@ -149,7 +149,7 @@ class wildfly82::install {
     destination => '/home/wildfly',
     user        => 'wildfly82',
     src         => "http://download.jboss.org/wildfly/8.2.1.Final/wildfly-8.2.1.Final.tar.gz",
-    require     => [Package['openjdk-8-jdk'], user["wildfly82"]],
+    require     => [ user["wildfly82"]],
   }
 
   exec { "unzip wildfly":

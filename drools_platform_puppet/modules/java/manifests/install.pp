@@ -1,10 +1,10 @@
 # install the jdk 7 on the machine
 # include 'Puppet::Parser::Functions'
 class java::install {
-  package { 'openjdk-8-jdk': # install the java 8 jdk on the machine
+  package { 'openjdk-7-jdk': # install the java 8 jdk on the machine
     ensure => installed, }
 
-  package { "openssh-server": ensure => present }
+
 
   package { "supervisor": ensure => present }
 
@@ -27,11 +27,7 @@ class java::install {
     path    => "/usr/local/bin/:/bin/:/usr/sbin/"
   }
 
-  exec { "to allow ssh connection, otherwise you will have permission denied (for Ubuntu 14.04)":
-    command => "sed --in-place=.bak 's/without-password/yes/' /etc/ssh/sshd_config",
-    path    => "/usr/local/bin/:/bin/:/usr/sbin/",
-    require => [Package['openssh-server']]
-  }
+
 
   file { '/etc/supervisor/conf.d/supervisord.conf':
     ensure  => present,

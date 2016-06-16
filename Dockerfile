@@ -16,13 +16,13 @@ RUN apt-get -y upgrade
 ENV DEBIAN_FRONTEND noninteractive
 ENV INITRD No
 #install
-RUN apt-get install -y wget openssh-server supervisor openjdk-8-jdk postgresql postgresql-contrib unzip puppet vim
-
-ADD examples /home/examples  
-#setup tomcat7
+RUN apt-get install -y software-properties-common python-software-properties
+RUN add-apt-repository ppa:openjdk-r/ppa
+RUN apt-get update
+RUN apt-get install -y wget supervisor openjdk-7-jdk postgresql postgresql-contrib unzip puppet vim
 
 ENV M2_HOME /home/maven/apache-maven-3.3.9
-
+ADD examples /home/examples
 
 # to copy Puppet code into container
 ADD drools_platform_puppet /drools_platform_puppet 
