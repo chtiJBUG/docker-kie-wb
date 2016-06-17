@@ -1,4 +1,0 @@
- drools-guvnor {
-    com.pymmasoftware.platform.login.loginmodule.DroolsLoginModule
-    required debug=true;
- };
