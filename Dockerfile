@@ -12,6 +12,8 @@ RUN yum -y upgrade
 #RUN yum install -y wget python-setuptools postgresql95-server postgresql95-contrib postgresql95-libs  postgresql95 unzip puppet vim gzip gunzip
 RUN yum install -y wget python-setuptools  unzip puppet vim gzip gunzip
 RUN mkdir /home/db
+RUN mkdir /home/lucene
+RUN mkdir /home/niodir
 #RUN mkdir -p  /var/log/supervisor
 #RUN easy_install supervisor
 #ADD examples /home/examples
@@ -49,7 +51,9 @@ EXPOSE 5432
 EXPOSE 61616
 EXPOSE 9418
 
-
+VOLUME /home/db
+VOLUME /home/lucene
+VOLUME /home/niodir
 #CMD ["/usr/bin/supervisord"]
 WORKDIR $JBOSS_HOME/bin/
 CMD ["./start_drools-wb.sh"]
