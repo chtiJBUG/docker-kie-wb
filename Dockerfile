@@ -38,6 +38,8 @@ ADD etc/drools-roles.properties $JBOSS_HOME/standalone/configuration/drools-role
 RUN chown jboss:jboss $JBOSS_HOME/standalone/configuration/standalone-full-drools.xml && \
 chown jboss:jboss $JBOSS_HOME/standalone/configuration/drools-users.properties && \
 chown jboss:jboss $JBOSS_HOME/standalone/configuration/drools-roles.properties
+RUN mkdir /root/.m2
+ADD etc/settings.xml /root/.m2
 
 
 # tomcat7
