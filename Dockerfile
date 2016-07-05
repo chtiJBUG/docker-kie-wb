@@ -10,10 +10,12 @@ RUN rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
 RUN yum update
 RUN yum -y upgrade
 #RUN yum install -y wget python-setuptools postgresql95-server postgresql95-contrib postgresql95-libs  postgresql95 unzip puppet vim gzip gunzip
-RUN yum install -y wget python-setuptools  unzip puppet vim gzip gunzip
+RUN yum install -y wget python-setuptools  unzip puppet vim gzip gunzip git
 RUN mkdir /home/db
 RUN mkdir /home/lucene
 RUN mkdir /home/niodir
+RUN mkdir /home/kie-example
+RUN cd /home/kie-example && git clone https://github.com/chtiJBUG/onboarding-nautic-project.git
 #RUN mkdir -p  /var/log/supervisor
 #RUN easy_install supervisor
 #ADD examples /home/examples
