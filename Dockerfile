@@ -6,8 +6,9 @@ ENV REFRESHED_AT 2016-06-14
 ENV JBOSS_BIND_ADDRESS 0.0.0.0
 USER root
 #RUN rpm -Uvh http://yum.postgresql.org/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-2.noarch.rpm
+RUN yum makecache fast
 RUN rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
-RUN yum update
+RUN yum -y update
 RUN yum -y upgrade
 #RUN yum install -y wget python-setuptools postgresql95-server postgresql95-contrib postgresql95-libs  postgresql95 unzip puppet vim gzip gunzip
 RUN yum install -y wget python-setuptools  unzip puppet vim gzip gunzip git
