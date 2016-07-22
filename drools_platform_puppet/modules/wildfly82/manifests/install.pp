@@ -17,6 +17,13 @@ class wildfly82::install {
     src         => maven_to_link("org.chtijbug.drools:kie-server:2.0.0-SNAPSHOT:war"),
 
   }
+  # download kie-wb.war :
+  lib::wget { "swimmingpool-web.war":
+    destination => '/opt/jboss/wildfly/standalone/deployments',
+    user        => 'root',
+    src         => maven_to_link("org.chtijbug.drools:drools-framework-swimmingpool-web-ui:2.0.0-SNAPSHOT:war"),
+
+  }
 }
 
 
