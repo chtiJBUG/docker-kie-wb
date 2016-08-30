@@ -157,28 +157,29 @@
             <datasources>
                 <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true"
                             use-java-context="true">
-                    <!--connection-url>jdbc:h2:file:/home/db</connection-url-->
-                    <connection-url>jdbc:h2:file:/home/db/jbpm;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
-                    <driver>h2</driver>
+                    <connection-url>jdbc:postgresql://db-server:5432/jbpm</connection-url>
+                    <driver>postgresql</driver>
                     <security>
-                        <user-name>sa</user-name>
-                        <password>sa</password>
+                        <user-name>jbpm</user-name>
+                        <password>jbpm</password>
                     </security>
                 </datasource>
                 <datasource jndi-name="java:jboss/datasources/kieServerDS" pool-name="kieServerDS" enabled="true"
                             use-java-context="true">
-                    <!--connection-url>jdbc:h2:file:/home/db</connection-url-->
-                    <connection-url>jdbc:h2:file:/home/db/kieserver;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-                    </connection-url>
-                    <driver>h2</driver>
+                    <connection-url>jdbc:postgresql://db-server:5432/jbpm</connection-url>
+                    <driver>postgresql</driver>
                     <security>
-                        <user-name>sa</user-name>
-                        <password>sa</password>
+                        <user-name>jbpm</user-name>
+                        <password>jbpm</password>
                     </security>
                 </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+                    </driver>
+                    <driver name="postgresql" module="org.postgresql">
+                        <datasource-class>org.postgresql.Driver</datasource-class>
+                        <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
                     </driver>
                 </drivers>
             </datasources>
