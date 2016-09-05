@@ -9,14 +9,15 @@ onboarding:
   ports:
        - "11080:8080"
        - "11022:22"
-       -  "11432:5432"
-       -  "8000:8000"
+       - "11432:5432"
+       - "8000:8000"
 
 
 
 db-server:
   container_name: db-server
-  build: Dockerfile_pg
+  build: .
+  dockerfile: Dockerfile_pg
   environment:
     POSTGRES_USER: postgres
     PGDATA: /var/lib/postgresql/data/pgdata
