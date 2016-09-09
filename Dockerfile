@@ -58,7 +58,8 @@ EXPOSE 9418
 VOLUME /home/db
 VOLUME /home/lucene
 VOLUME /home/niodir
-#CMD ["/usr/bin/supervisord"]
 WORKDIR $JBOSS_HOME/bin/
-CMD ["./start_drools-wb.sh"]
+CMD ["/usr/bin/supervisord"]
+
+#CMD ["./start_drools-wb.sh"]
 
