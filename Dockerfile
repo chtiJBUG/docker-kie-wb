@@ -1,7 +1,7 @@
-FROM jboss/wildfly:8.2.0.Final
+FROM jboss/wildfly:10.1.0.Final
 MAINTAINER Nicolas Heron
 
-ENV REFRESHED_AT 2016-06-14
+ENV REFRESHED_AT 2016-11-04
 
 ENV JBOSS_BIND_ADDRESS 0.0.0.0
 USER root
@@ -17,6 +17,8 @@ RUN mkdir /home/lucene
 RUN mkdir /home/niodir
 RUN mkdir /home/kie-example
 RUN cd /home/kie-example && git clone https://github.com/chtiJBUG/onboarding-nautic-project.git
+RUN cd /home/kie-example && git clone https://github.com/chtiJBUG/onboarding-carinsurance-project.git
+RUN cd /home/kie-example && git clone https://github.com/chtiJBUG/onboarding-loyalty-project.git
 #RUN mkdir -p  /var/log/supervisor
 #RUN easy_install supervisor
 #ADD examples /home/examples
